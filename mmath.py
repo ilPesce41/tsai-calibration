@@ -35,7 +35,8 @@ def matrixToEuler(M):
     return heading, attitude, bank
 
 
-def eulerToMatrix(( heading, attitude, bank )):
+def eulerToMatrix(input):
+    heading, attitude, bank = input
     # Convert euler angles back to matrix
     sa, ca = sin(attitude), cos(attitude)
     sb, cb = sin(bank), cos(bank)

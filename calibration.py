@@ -33,10 +33,10 @@ def approximateL(points):
             xd, yd = d[0], d[1]
             xw, yw, zw = w[0], w[1], w[2]
             return [ yd*xw, yd*yw, yd*zw, yd, -xd*xw, -xd*yw, -xd*zw ]
-        return np.array(map(constructLineOfM, points), np.float64)
+        return np.array(list(map(constructLineOfM, points)), np.float64)
 
     def constructXd(points):
-        return np.array(map(lambda point: point.sensor[0], points), np.float64)
+        return np.array(list(map(lambda point: point.sensor[0], points)), np.float64)
 
     M = constructM(points)
     inverseM = np.linalg.pinv(M)  # M* approximates M inverse
@@ -85,10 +85,10 @@ def calculateTx(L, ty, sx):
 
 def approximateFTz(points, ty, rotationMatrix): # returns [ f, tz ]
     ## Construct system of linear equations x = MP where P = (f,tz)
-    uy = np.add(map(lambda point: np.dot(rotationMatrix[1], point.world), points), ty)
-    uz = np.array(map(lambda point: np.dot(rotationMatrix[2], point.world), points), np.float64)
-    yd = np.array(map(lambda point: point.sensor[1], points), np.float64)
-    M = np.column_stack((uy, map(lambda y: -y, yd)))
+    uy = np.add(list(map(lambda point: np.dot(rotationMatrix[1], point.world), points)), ty)
+    uz = np.array(list(map(lambda point: np.dot(rotationMatrix[2], point.world), points)), np.float64)
+    yd = np.array(list(map(lambda point: point.sensor[1], points)), np.float64)
+    M = np.column_stack((uy, list(map(lambda y: -y, yd))))
 
     ## Find an approximation of P
     inverseM = pinv(M)
