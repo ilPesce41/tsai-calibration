@@ -14,7 +14,7 @@ def toHomogenous(point):
 	dim = len(point)+1
 	lower = np.array(point)
 	higher = np.ones(dim)
-	higher[:dim] = lower
+	higher[:dim-1] = lower
 	return higher
 
 
@@ -34,32 +34,33 @@ def triangulate_point(cameras):
 		R = camera['R']
 		t = camera['t']
 		K = camera['K']
+		print(K)
 
 		#Pixel location in homogeneous coordinates
 		point = toHomogenous(camera['point'])
 
 		#Calculate cj and vj for  point
 		cj = R.T@t
-		V = R.T@np.linalg(K)@point
-		v = V/np.linalg.norm(V)
+		V = R.T@np.linalg.pinv(K)@point
+		vj = V/np.linalg.norm(V)
 
 		#Store cj and vj
-		c.append(c)
-		v.append(v)
+		c.append(cj)
+		v.append(vj)
 
 	#Matricies to hold two sums
-	A = np.zeros(3,3)
+	A = np.zeros(1)
 	B = np.zeros(3)
 
 	#Iterate through (cj,vj) pairs and add
 	#Calculations to A and B
-	for ci,vi in zip([ci,vi]):
-		inter = np.ones((3,3)) - v@v.T
+	for ci,vi in zip(c,v):
+		inter = np.ones(1) - vi@vi.T
 		A = A + inter
-		B = B + inter@c
+		B = B + inter*ci
 
 	#Triangulate point
-	return np.linalg.inv(A)@B
+	return (1/A)*B
 
 
 		

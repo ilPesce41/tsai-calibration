@@ -9,7 +9,7 @@ import numpy as np
 import cv2
 import pyzbar.pyzbar as zbar
 import os
-from multiprocessing import Pool
+from multiprocessing import Pool, freeze_support
 
 
 #Imports from Tsai Calibration Repo
@@ -111,15 +111,15 @@ def tsai_calibration(filename):
 
 	#Create camera dict for triangulate function
 	camera = {}
-	camera['R'] = params["rotationMatrix"]
+	camera['R'] = np.array(params["rotationMatrix"])
 	t = []
 	for v in ['tx','ty','tz']:
 		t.append(params[v])
 	camera['t'] = np.array(t)
 	f = params['f']
-	camera['k'] = np.array([
-			[f,0,0],
-			[0,f,0],
+	camera['K'] = np.array([
+			[-f,0,0],
+			[0,-f,0],
 			[0,0,1]
 		])
 	return camera
