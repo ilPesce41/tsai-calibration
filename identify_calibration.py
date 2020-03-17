@@ -1,5 +1,5 @@
 """
-@Author: Cole Hill
+@Author: Cole Hill <coleh@mail.usf.edu>
 @Date: 03/17/2020
 University of South Florida
 """
