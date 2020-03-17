@@ -1,3 +1,9 @@
+"""
+@Author: Cole Hill
+@Date: 03/17/2020
+University of South Florida
+"""
+
 import numpy as np
 
 

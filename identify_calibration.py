@@ -1,8 +1,18 @@
+"""
+@Author: Cole Hill
+@Date: 03/17/2020
+University of South Florida
+"""
+
+#Dependencies
 import numpy as np
 import cv2
 import pyzbar.pyzbar as zbar
 import os
 from multiprocessing import Pool
+
+
+#Imports from Tsai Calibration Repo
 from point import Point, newPoint
 from calibration import calibrate
 
