@@ -39,7 +39,6 @@ def identify_points(filename):
 	"""
 	points = {}
 	images = []
-
 	#Load image
 	in_im = cv2.imread(filename)
 	#Convert to grayscale
@@ -118,8 +117,8 @@ def tsai_calibration(filename):
 	camera['t'] = np.array(t)
 	f = params['f']
 	camera['K'] = np.array([
-			[-f,0,0],
-			[0,-f,0],
+			[f,0,0],
+			[0,f,0],
 			[0,0,1]
 		])
 	return camera

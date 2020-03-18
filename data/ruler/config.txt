@@ -1,0 +1,4 @@
+C:/Users/Jaime/Desktop/Camera_Calibration/data/ruler/1.jpg
+C:/Users/Jaime/Desktop/Camera_Calibration/data/ruler/2.jpg
+3024,4032
+2380,2069

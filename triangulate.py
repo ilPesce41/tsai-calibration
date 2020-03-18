@@ -34,11 +34,9 @@ def triangulate_point(cameras):
 		R = camera['R']
 		t = camera['t']
 		K = camera['K']
-		print(K)
 
 		#Pixel location in homogeneous coordinates
 		point = toHomogenous(camera['point'])
-
 		#Calculate cj and vj for  point
 		cj = R.T@t
 		V = R.T@np.linalg.pinv(K)@point
